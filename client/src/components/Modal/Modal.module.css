@@ -1,0 +1,49 @@
+.modal {
+  position: fixed;
+  width: 398px;
+  height: 200px;
+  z-index: 1;
+  background-color: white;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 7px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.buyerButton {
+  background-color: #20a4f3;
+  border: none;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  font-size: 18px;
+  width: 179px;
+  height: 48px;
+  border-radius: 7px;
+}
+
+.sellerButton {
+  background-color: #df5b0c;
+  border: none;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  font-size: 18px;
+  width: 179px;
+  height: 48px;
+  border-radius: 7px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-top: 58px;
+  height: 48px;
+}
+
+.title {
+  padding-top: 50px;
+}

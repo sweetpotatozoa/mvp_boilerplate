@@ -1,8 +1,10 @@
 import styles from './Modal.module.css'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Modal = (props) => {
   const { cta, setCta } = props
+  const navigate = useNavigate()
   return (
     <div className={styles.modal}>
       <p className={styles.title}>신청 목적을 알려주세요.</p>
@@ -10,8 +12,8 @@ const Modal = (props) => {
         <button
           id='buyerButton'
           className={styles.buyerButton}
-          onClick={function () {
-            cta === 1 ? setCta(0) : null
+          onClick={() => {
+            navigate('/buyer/items')
           }}
         >
           구매자
@@ -19,8 +21,8 @@ const Modal = (props) => {
         <button
           id='sellerButton'
           className={styles.sellerButton}
-          onClick={function () {
-            cta === 1 ? setCta(0) : null
+          onClick={() => {
+            navigate('/seller/codecheck')
           }}
         >
           판매자

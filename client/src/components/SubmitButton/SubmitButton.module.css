@@ -1,0 +1,15 @@
+.nextButton {
+  height: 48px;
+  width: 398px;
+
+  background: #ef798a;
+  border-radius: 7px;
+  border: none;
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.nextButtonDiv {
+  position: absolute;
+  bottom: 8px;
+}

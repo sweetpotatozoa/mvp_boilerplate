@@ -7,13 +7,14 @@ import Modal from '../../components/Modal/Modal'
 
 const Home = () => {
   let [cta, setCta] = useState(0)
+  let [transactionStatus, setTransactionStatus] = useState(null)
   return (
     <div>
       <Logo />
-      <ProgressStatus />
+      <ProgressStatus transactionStatus={transactionStatus} />
       {cta === 0 ? null : <Modal cta={cta} setCta={setCta}></Modal>}
       <Guide />
-      <Cta cta={cta} setCta={setCta} />
+      <Cta cta={cta} setCta={setCta} transactionStatus={transactionStatus} />
     </div>
   )
 }

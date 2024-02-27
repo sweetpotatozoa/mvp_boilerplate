@@ -1,0 +1,29 @@
+.popUp {
+  position: fixed;
+  width: 398px;
+  height: 200px;
+  z-index: 1;
+  background-color: white;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 7px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button {
+  height: 48px;
+  width: 382px;
+  background: #ef798a;
+  border-radius: 7px;
+  border: none;
+  color: #ffffff;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.title {
+  padding-top: 50px;
+}

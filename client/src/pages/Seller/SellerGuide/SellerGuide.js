@@ -41,7 +41,7 @@ const SellerGuide = () => {
       <SubmitButton
         text={'확인'}
         onClick={() => {
-          navigate('/home')
+          navigate('/')
         }}
       />
     </div>

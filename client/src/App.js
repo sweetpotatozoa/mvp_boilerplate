@@ -8,12 +8,14 @@ import SellerGuide from './pages/Seller/SellerGuide/SellerGuide'
 import SellerItems from './pages/Seller/SellerItems/SellerItems'
 import SellerInfo from './pages/Seller/SellerInfo/SellerInfo'
 import SellerCodeCheck from './pages/Seller/SellerCodeCheck/SellerCodeCheck'
+import Login from './pages/Login/Login'
 function App() {
   return (
     <div className='App'>
       <Router>
         <Routes>
-          <Route exact path='/home' element={<Home />} />
+          <Route exact path='/' element={<Home />} />
+          <Route exact path='/login' element={<Login />} />
           <Route exact path='/buyer/items' element={<BuyerItems />} />
           <Route exact path='/buyer/address' element={<BuyerAddress />} />
           <Route exact path='/buyer/guide' element={<BuyerGuide />} />

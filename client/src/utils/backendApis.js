@@ -26,8 +26,13 @@ class BackendApis {
     this.token = null
   }
 
+  async register(method = 'POST', params = {}) {
+    const result = await fetcher('/auth/register', '', method, params)
+    return result
+  }
+
   async login(method = 'POST', params = {}) {
-    const result = await fetcher('/login', '', method, params)
+    const result = await fetcher('/auth/login', '', method, params)
     if (result?.status === 200) this.token = result.token
     return result
   }

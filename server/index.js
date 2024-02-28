@@ -9,6 +9,7 @@ const configs = require('./src/utils/configs')
 const mongodb = require('./src/utils/mongodb')
 const indexRouter = require('./src/routes/index')
 const exampleRouter = require('./src/routes/Example_Route')
+const authRouter = require('./src/routes/Auth_Route')
 
 app.use(cors())
 app.set('view engine', 'ejs')
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
 app.use('/example', exampleRouter)
+app.use('/auth', authRouter)
 
 mongodb.runAfterAllConnected(() => {
   app.listen(configs.port, () => {

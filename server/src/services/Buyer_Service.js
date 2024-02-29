@@ -40,6 +40,26 @@ class BuyerService {
     const result = await TransactionRepo.createTransaction(data)
     return result
   }
+
+  async updateTransaction(
+    buyerId,
+    recipientName,
+    recipientPhoneNumber,
+    recipientAddress,
+    depositorName,
+  ) {
+    const data = {
+      buyerInfo: {
+        recipientName: recipientName,
+        recipientPhoneNumber: recipientPhoneNumber,
+        recipientAddress: recipientAddress,
+        depositorName: depositorName,
+      },
+    }
+
+    const result = await TransactionRepo.updateTransaction(buyerId, data)
+    return result
+  }
 }
 
 module.exports = new BuyerService()

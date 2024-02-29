@@ -1,7 +1,7 @@
 const AuthService = require('../services/Auth_Service')
 
 class AuthController {
-  async register(userName, password, phoneNumber, email = null) {
+  async register(userName, password, phoneNumber, email) {
     try {
       const user = await AuthService.getUser(userName)
       if (user !== null) {

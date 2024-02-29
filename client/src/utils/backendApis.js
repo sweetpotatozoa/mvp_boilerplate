@@ -23,7 +23,7 @@ const fetcher = async (url, token, method, params = {}) => {
 
 class BackendApis {
   constructor() {
-    this.token = null
+    this.token = localStorage.getItem('token')
   }
 
   async register(method = 'POST', params = {}) {
@@ -31,9 +31,18 @@ class BackendApis {
     return result
   }
 
+  async createTransaction(method = 'POST', params = {}) {
+    const result = await fetcher('/buyer/items', this.token, method, params)
+    return result
+  }
+
   async login(method = 'POST', params = {}) {
     const result = await fetcher('/auth/login', '', method, params)
-    if (result?.status === 200) this.token = result.token
+    if (result?.status === 200) {
+      this.token = result.token
+      // 로그인 성공 시 토큰을 localStorage에 저장
+      localStorage.setItem('token', result.token)
+    }
     return result
   }
 }

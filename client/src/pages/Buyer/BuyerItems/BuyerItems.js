@@ -4,6 +4,7 @@ import styles from './BuyerItems.module.css'
 import Logo from '../../../components/Logo/Logo'
 import NextButton from '../../../components/NextButton/NextButton'
 import { useNavigate } from 'react-router-dom'
+import backendApis from '../../../utils/backendApis'
 const BuyerItems = () => {
   let navigate = useNavigate()
   const [inputs, setInputs] = useState({
@@ -51,8 +52,22 @@ const BuyerItems = () => {
         }}
       />
       <NextButton
-        onClick={() => {
-          if (isNextButtonEnabled) navigate('/buyer/address')
+        onClick={async (e) => {
+          e.preventDefault()
+          if (isNextButtonEnabled) {
+            const res = await backendApis.createTransaction('POST', {
+              brand: inputs.brand,
+              productCode: inputs.productCode,
+              color: inputs.color,
+              size: inputs.size,
+            })
+            if (res?.status === 201) {
+              navigate('/buyer/address')
+              console.log(res?.status)
+            } else alert('제품 등록에 실패했습니다.')
+          } else {
+            alert('모든 정보를 입력해주세요.')
+          }
         }}
         text={'다음'}
       />

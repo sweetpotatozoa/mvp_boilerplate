@@ -61,6 +61,16 @@ class BackendApis {
     return result
   }
 
+  async sellerCodeCheck(method = 'GET', params = {}) {
+    const result = await fetcher(
+      '/seller/codecheck',
+      this.token,
+      method,
+      params,
+    )
+    return result
+  }
+
   async requestUniqueCode(method = 'PUT', params = {}) {
     const result = await fetcher(
       '/buyer/uniqueCode',

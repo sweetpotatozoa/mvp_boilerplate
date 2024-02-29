@@ -39,6 +39,15 @@ class TransactionRepo {
         },
       },
     )
+
+    return result
+  }
+
+  async getItems(uniqueCode) {
+    const result = await this.collection.findOne({
+      uniqueCode: uniqueCode,
+    })
+
     return result
   }
 

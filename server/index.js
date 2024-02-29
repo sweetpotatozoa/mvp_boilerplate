@@ -12,6 +12,7 @@ const exampleRouter = require('./src/routes/Example_Route')
 const authRouter = require('./src/routes/Auth_Route')
 const buyerRouter = require('./src/routes/Buyer_Route')
 const traceTransactionRouter = require('./src/routes/TraceTransaction_Route')
+const sellerRouter = require('./src/routes/Seller_Route')
 
 // CORS 설정: 모든 출처를 허용하도록 설정
 app.use(
@@ -47,6 +48,7 @@ app.use('/example', exampleRouter)
 app.use('/auth', authRouter)
 app.use('/buyer', buyerRouter)
 app.use('/traceTransaction', traceTransactionRouter)
+app.use('/seller', sellerRouter)
 
 mongodb.runAfterAllConnected(() => {
   app.listen(configs.port, () => {

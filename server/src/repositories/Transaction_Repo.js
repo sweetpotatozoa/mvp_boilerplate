@@ -30,8 +30,24 @@ class TransactionRepo {
   async updateTransaction(transactionId, data) {
     const result = await this.collection.updateOne(
       { _id: new mongoose.Types.ObjectId(transactionId) },
-      { $set: { buyerInfo: data.buyerInfo } },
+      {
+        $set: {
+          'buyerInfo.recipientName': data.buyerInfo.recipientName,
+          'buyerInfo.recipientPhoneNumber': data.buyerInfo.recipientPhoneNumber,
+          'buyerInfo.recipientAddress': data.buyerInfo.recipientAddress,
+          'buyerInfo.depositorName': data.buyerInfo.depositorName,
+        },
+      },
     )
+
+    return result
+  }
+
+  async getItems(uniqueCode) {
+    const result = await this.collection.findOne({
+      uniqueCode: uniqueCode,
+    })
+
     return result
   }
 }

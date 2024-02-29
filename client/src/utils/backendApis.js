@@ -60,6 +60,16 @@ class BackendApis {
     const result = await fetcher('/buyer/address', this.token, method, params)
     return result
   }
+
+  async sellerCodeCheck(method = 'GET', params = {}) {
+    const result = await fetcher(
+      '/seller/codecheck',
+      this.token,
+      method,
+      params,
+    )
+    return result
+  }
 }
 
 export default new BackendApis()

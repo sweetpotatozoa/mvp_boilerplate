@@ -70,6 +70,7 @@ class BackendApis {
     )
     return result
   }
+
   async requestUniqueCode(method = 'PUT', params = {}) {
     const result = await fetcher(
       '/buyer/uniqueCode',

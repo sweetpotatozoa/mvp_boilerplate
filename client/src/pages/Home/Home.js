@@ -1,13 +1,25 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Logo from '../../components/Logo/Logo'
 import ProgressStatus from '../../components/ProgressStatus/ProgressStatus'
 import Guide from '../../components/Guide/Guide'
 import Cta from '../../components/Cta/Cta'
 import Modal from '../../components/Modal/Modal'
+import BackendApis from '../../utils/backendApis'
 
 const Home = () => {
-  let [cta, setCta] = useState(0)
-  let [transactionStatus, setTransactionStatus] = useState(null)
+  const [cta, setCta] = useState(0)
+  const [transactionStatus, setTransactionStatus] = useState(null)
+
+  const transactionSatusHandler = async () => {
+    const result = await BackendApis.traceTransaction()
+    if (result?.status === 200) {
+      setTransactionStatus(result.transactionStatus)
+    }
+  }
+
+  useEffect(() => {
+    transactionSatusHandler()
+  }, [])
   return (
     <div>
       <Logo />

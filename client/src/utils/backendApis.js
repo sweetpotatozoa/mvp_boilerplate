@@ -45,6 +45,16 @@ class BackendApis {
     }
     return result
   }
+
+  async traceTransaction(method = 'GET', params = {}) {
+    const result = await fetcher(
+      '/traceTransaction',
+      this.token,
+      method,
+      params,
+    )
+    return result
+  }
 }
 
 export default new BackendApis()

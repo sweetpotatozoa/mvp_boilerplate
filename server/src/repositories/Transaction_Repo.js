@@ -50,6 +50,35 @@ class TransactionRepo {
 
     return result
   }
+
+  async requestUniqueCode(buyerId) {
+    // 최근 문서를 찾기 위해 find() 메서드를 사용
+    const document = await this.collection
+      .find({ 'buyerInfo.buyerId': new mongoose.Types.ObjectId(buyerId) })
+      .sort({ createdAt: -1 }) // createdAt을 기준으로 내림차순 정렬
+      .limit(1) // 최근 문서 1개만 선택
+      .toArray() // 결과를 배열로 변환
+
+    // 결과 확인
+    console.log('최근 문서:', document)
+
+    // 최근 문서를 업데이트
+    const result = await this.collection.findOneAndUpdate(
+      { _id: document[0]._id }, // 최근 문서의 _id를 사용하여 업데이트
+      { $set: { isUniqueCodeRequest: true } },
+    )
+
+    // 업데이트 작업에 대한 성공 여부 확인
+    // if (result.ok === 1) {
+    //   console.log('업데이트가 성공적으로 수행되었습니다.')
+    // } else {
+    //   console.log('업데이트 작업에 실패했습니다.')
+    //   console.log('실패 이유:', result.lastErrorObject)
+    // }
+
+    // 업데이트 결과 반환
+    return result
+  }
 }
 
 module.exports = new TransactionRepo()

@@ -70,6 +70,15 @@ class BackendApis {
     )
     return result
   }
+  async requestUniqueCode(method = 'PUT', params = {}) {
+    const result = await fetcher(
+      '/buyer/uniqueCode',
+      this.token,
+      method,
+      params,
+    )
+    return result
+  }
 }
 
 export default new BackendApis()

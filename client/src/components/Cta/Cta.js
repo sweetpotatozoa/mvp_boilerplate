@@ -1,5 +1,6 @@
 import styles from './Cta.module.css'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Cta = (props) => {
   const { cta, setCta, transactionStatus } = props
@@ -10,13 +11,25 @@ const Cta = (props) => {
   const buttonText = isButtonDisabled
     ? '아직 거래중인 상품이 있습니다.'
     : '신청하기'
+
+  const isLogin = () => {
+    const token = localStorage.getItem('token')
+    return token ? true : false
+  }
+
+  const navigate = useNavigate()
+
   return (
     <div>
       <button
         className={buttonClass}
         onClick={() => {
-          if (!isButtonDisabled) {
-            cta === 0 ? setCta(1) : null
+          if (isLogin()) {
+            if (!isButtonDisabled) {
+              cta === 0 ? setCta(1) : null
+            }
+          } else {
+            navigate('/login')
           }
         }}
       >

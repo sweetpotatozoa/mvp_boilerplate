@@ -1,4 +1,5 @@
 const BuyerService = require('../services/Buyer_Service')
+const TraceTransaction_Service = require('../services/TraceTransaction_Service')
 
 class BuyerController {
   async createTransaction(buyerId, brand, productCode, color, size) {
@@ -17,7 +18,7 @@ class BuyerController {
   }
 
   async updateTransaction(
-    buyerId,
+    transanctionId,
     recipientName,
     recipientPhoneNumber,
     recipientAddress,
@@ -25,7 +26,7 @@ class BuyerController {
   ) {
     try {
       const result = await BuyerService.updateTransaction(
-        buyerId,
+        transanctionId,
         recipientName,
         recipientPhoneNumber,
         recipientAddress,
@@ -34,6 +35,25 @@ class BuyerController {
       return { status: 201, transactionId: result.insertedId }
     } catch (err) {
       return { status: 500, message: err.message }
+    }
+  }
+
+  async RequestUniqueCode(buyerId) {
+    const isIdvalid = await TraceTransaction_Service.isIdvalid(buyerId)
+    if (!isIdvalid) {
+      return { status: 400, message: 'Invalid ID' }
+    } else {
+      try {
+        const result = await BuyerService.RequestUniqueCode(buyerId)
+        console.log('컨트롤러에서 받은 result', result)
+        if (result === null) {
+          return { status: 404, message: 'Transaction not found' }
+        } else {
+          return { status: 201, message: 'Unique code request success' }
+        }
+      } catch (err) {
+        return { status: 500, message: err.message }
+      }
     }
   }
 }

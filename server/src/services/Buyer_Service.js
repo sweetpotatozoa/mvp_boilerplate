@@ -42,7 +42,7 @@ class BuyerService {
   }
 
   async updateTransaction(
-    buyerId,
+    transactionId,
     recipientName,
     recipientPhoneNumber,
     recipientAddress,
@@ -57,7 +57,13 @@ class BuyerService {
       },
     }
 
-    const result = await TransactionRepo.updateTransaction(buyerId, data)
+    const result = await TransactionRepo.updateTransaction(transactionId, data)
+    return result
+  }
+
+  async RequestUniqueCode(buyerId) {
+    const result = await TransactionRepo.requestUniqueCode(buyerId)
+    console.log('서비스에서 받은 result', result)
     return result
   }
 }

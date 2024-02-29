@@ -3,8 +3,17 @@ import styles from './BuyerGuide.module.css'
 import Logo from '../../../components/Logo/Logo'
 import SubmitButton from '../../../components/SubmitButton/SubmitButton'
 import PopUp from '../../../components/PopUp/PopUp'
+import backendApis from '../../../utils/backendApis'
+
 const BuyerGuide = () => {
   const [popUp, setPopUp] = useState(0)
+  const uniqueCodeRequester = async () => {
+    const response = await backendApis.requestUniqueCode('PUT')
+    if (response.status === 201) {
+      setPopUp(1)
+    } else alert('문제가 발생했습니다 :(')
+  }
+
   return (
     <div>
       <Logo />
@@ -43,9 +52,10 @@ const BuyerGuide = () => {
       {popUp === 0 ? null : <PopUp></PopUp>}
       <SubmitButton
         text={'입금완료'}
-        onClick={() => {
-          popUp === 0 ? setPopUp(1) : null
-        }}
+        onClick={uniqueCodeRequester}
+        //   () => {
+        //   popUp === 0 ? setPopUp(1) : null
+        // }}
       />
     </div>
   )

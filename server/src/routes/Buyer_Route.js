@@ -32,4 +32,8 @@ router.patch('/address', auth, async (req, res) => {
   return res.status(result.status).send(result)
 })
 
+router.put('/uniqueCode', auth, async (req, res) => {
+  const result = await BuyerController.RequestUniqueCode(req.user.id)
+  return res.status(result.status).send(result)
+})
 module.exports = router

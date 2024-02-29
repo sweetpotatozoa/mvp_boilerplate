@@ -17,7 +17,7 @@ const traceTransactionRouter = require('./src/routes/TraceTransaction_Route')
 app.use(
   cors({
     origin: '*', // 모든 출처 허용
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // 허용할 HTTP 메소드 명시
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // 허용할 HTTP 메소드 명시
     allowedHeaders: ['Content-Type', 'x-access-token'], // 허용할 헤더 명시
     credentials: true, // 쿠키를 포함시키기 위한 설정
   }),

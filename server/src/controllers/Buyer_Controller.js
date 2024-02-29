@@ -15,6 +15,27 @@ class BuyerController {
       return { status: 500, message: err.message }
     }
   }
+
+  async updateTransaction(
+    buyerId,
+    recipientName,
+    recipientPhoneNumber,
+    recipientAddress,
+    depositorName,
+  ) {
+    try {
+      const result = await BuyerService.updateTransaction(
+        buyerId,
+        recipientName,
+        recipientPhoneNumber,
+        recipientAddress,
+        depositorName,
+      )
+      return { status: 201, transactionId: result.insertedId }
+    } catch (err) {
+      return { status: 500, message: err.message }
+    }
+  }
 }
 
 module.exports = new BuyerController()

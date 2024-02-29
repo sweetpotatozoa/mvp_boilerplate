@@ -5,7 +5,6 @@ import SubmitButton from '../../../components/SubmitButton/SubmitButton'
 import PopUp from '../../../components/PopUp/PopUp'
 const BuyerGuide = () => {
   const [popUp, setPopUp] = useState(0)
-  console.log(popUp)
   return (
     <div>
       <Logo />

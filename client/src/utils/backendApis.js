@@ -3,7 +3,7 @@ const API_URI = process.env.REACT_APP_API_URI
 const fetcher = async (url, token, method, params = {}) => {
   const resource =
     method === 'GET' ? `${url}?${new URLSearchParams(params)}` : url
-  const init = ['POST', 'PUT', 'DELETE'].includes(method)
+  const init = ['POST', 'PUT', 'DELETE', 'PATCH'].includes(method)
     ? {
         body: JSON.stringify(params),
         headers: {},
@@ -53,6 +53,11 @@ class BackendApis {
       method,
       params,
     )
+    return result
+  }
+
+  async updateTransaction(method = 'PATCH', params = {}) {
+    const result = await fetcher('/buyer/address', this.token, method, params)
     return result
   }
 }

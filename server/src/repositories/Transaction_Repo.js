@@ -26,6 +26,14 @@ class TransactionRepo {
     )
     return result // 단일 객체 반환
   }
+
+  async updateTransaction(transactionId, data) {
+    const result = await this.collection.updateOne(
+      { _id: new mongoose.Types.ObjectId(transactionId) },
+      { $set: { buyerInfo: data.buyerInfo } },
+    )
+    return result
+  }
 }
 
 module.exports = new TransactionRepo()

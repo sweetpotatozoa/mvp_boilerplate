@@ -4,6 +4,7 @@ import React from 'react'
 // `status` prop을 추가하여 배송 상태를 받아옵니다.
 const ProgressStatus = (props) => {
   const { transactionStatus } = props
+
   return (
     <div className={styles.progressStatus}>
       <p className={styles.title}>내 진행상황</p>

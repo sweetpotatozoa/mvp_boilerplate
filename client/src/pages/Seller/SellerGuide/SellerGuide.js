@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './SellerGuide.module.css'
 import Logo from '../../../components/Logo/Logo'
 import SubmitButton from '../../../components/SubmitButton/SubmitButton'

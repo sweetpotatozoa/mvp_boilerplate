@@ -1,13 +1,39 @@
-import React, { useState } from 'react'
-import LableInput from '../../../components/LableInput/LableInput'
+import React, { useState, useEffect } from 'react'
 import styles from './SellerItems.module.css'
 import Logo from '../../../components/Logo/Logo'
-import NextButton from '../../../components/NextButton/NextButton'
 import { useNavigate } from 'react-router-dom'
 import OnOffNextButton from '../../../components/OnOffNextButton/OnOffNextButton'
+import ReadOnlyBox from '../../../components/ReadOnlyBox/ReadOnlyBox'
+import backendApis from '../../../utils/backendApis'
+
 const SellerItems = () => {
   let navigate = useNavigate()
   const [isChecked, setIsChecked] = useState(false)
+  const [inputs, setInputs] = useState({
+    brand: '',
+    productCode: '',
+    color: '',
+    size: '',
+  })
+
+  const getItems = async () => {
+    const result = await backendApis.getItemInfo('GET')
+    if (result?.status === 200) {
+      setInputs({
+        brand: result.productInfo.brand,
+        productCode: result.productInfo.productCode,
+        color: result.productInfo.color,
+        size: result.productInfo.size,
+      })
+    } else {
+      alert('정보를 불러오는 데 실패했습니다.')
+    }
+  }
+
+  useEffect(() => {
+    getItems()
+  }, [])
+
   const handleCheck = () => {
     setIsChecked(!isChecked)
   }
@@ -17,10 +43,10 @@ const SellerItems = () => {
       <p className={styles.title}>
         정품 검수를 맡기실 제품이 맞는지 확인해주세요.
       </p>
-      <LableInput label='1. 브랜드명' />
-      <LableInput label='2. 제품코드' />
-      <LableInput label='3. 색상' />
-      <LableInput label='4. 사이즈' />
+      <ReadOnlyBox label='1. 브랜드' value={inputs.brand} />
+      <ReadOnlyBox label='2. 제품코드' value={inputs.productCode} />
+      <ReadOnlyBox label='3. 색상' value={inputs.color} />
+      <ReadOnlyBox label='4. 사이즈' value={inputs.size} />
       <div>
         <input
           type='checkbox'

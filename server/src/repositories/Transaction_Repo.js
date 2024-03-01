@@ -68,16 +68,16 @@ class TransactionRepo {
       { _id: document[0]._id }, // 최근 문서의 _id를 사용하여 업데이트
       { $set: { isUniqueCodeRequest: true } },
     )
+    return result
+  }
 
-    // 업데이트 작업에 대한 성공 여부 확인
-    // if (result.ok === 1) {
-    //   console.log('업데이트가 성공적으로 수행되었습니다.')
-    // } else {
-    //   console.log('업데이트 작업에 실패했습니다.')
-    //   console.log('실패 이유:', result.lastErrorObject)
-    // }
-
-    // 업데이트 결과 반환
+  async getItemInfo(sellerId) {
+    const result = await this.collection.findOne(
+      { 'sellerInfo.sellerId': new mongoose.Types.ObjectId(sellerId) },
+      {
+        sort: { createdAt: -1 },
+      },
+    )
     return result
   }
   async updateSellerId(sellerId, transactionId) {

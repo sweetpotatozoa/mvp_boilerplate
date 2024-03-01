@@ -25,6 +25,20 @@ class SellerController {
       return { status: 500, message: err.message }
     }
   }
+
+  async getItemInfo(userId) {
+    try {
+      // userId를 사용하여 아이템 조회
+      const result = await SellerService.getItemInfo(userId)
+      if (result === null) {
+        return { status: 404, message: 'Transaction not found' }
+      } else {
+        return { status: 200, ...result }
+      }
+    } catch (err) {
+      return { status: 500, message: err.message }
+    }
+  }
 }
 
 module.exports = new SellerController()

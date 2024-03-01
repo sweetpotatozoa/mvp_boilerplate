@@ -20,6 +20,28 @@ class SellerService {
     const result = await TransactionRepo.getItemInfo(userId)
     return result
   }
+
+  async updateSellerInfo(
+    sellerId,
+    sellerName,
+    sellerPhoneNumber,
+    returnAddress,
+    accountNumber,
+    accountHolderName,
+  ) {
+    const data = {
+      sellerInfo: {
+        sellerName: sellerName,
+        sellerPhoneNumber: sellerPhoneNumber,
+        returnAddress: returnAddress,
+        accountNumber: accountNumber,
+        accountHolderName: accountHolderName,
+      },
+    }
+
+    const result = await TransactionRepo.updateSellerInfo(sellerId, data)
+    return result
+  }
 }
 
 module.exports = new SellerService()

@@ -92,6 +92,24 @@ class TransactionRepo {
 
     return result
   }
+
+  async updateSellerInfo(sellerId, data) {
+    const result = await this.collection.updateOne(
+      { 'sellerInfo.sellerId': new mongoose.Types.ObjectId(sellerId) },
+      {
+        $set: {
+          transactionStatus: 2,
+          'sellerInfo.sellerName': data.sellerInfo.sellerName,
+          'sellerInfo.sellerPhoneNumber': data.sellerInfo.sellerPhoneNumber,
+          'sellerInfo.returnAddress': data.sellerInfo.returnAddress,
+          'sellerInfo.accountNumber': data.sellerInfo.accountNumber,
+          'sellerInfo.accountHolderName': data.sellerInfo.accountHolderName,
+        },
+      },
+    )
+
+    return result
+  }
 }
 
 module.exports = new TransactionRepo()

@@ -10,20 +10,20 @@ const SellerItems = () => {
   let navigate = useNavigate()
   const [isChecked, setIsChecked] = useState(false)
   const [inputs, setInputs] = useState({
-    brand: '1',
-    productCode: '2',
-    color: '3',
-    size: '4',
+    brand: '',
+    productCode: '',
+    color: '',
+    size: '',
   })
 
   const getItems = async () => {
     const result = await backendApis.getItemInfo('GET')
     if (result?.status === 200) {
       setInputs({
-        brand: result.ItemInfo.brand,
-        productCode: result.ItemInfo.productCode,
-        color: result.ItemInfo.color,
-        size: result.ItemInfo.size,
+        brand: result.productInfo.brand,
+        productCode: result.productInfo.productCode,
+        color: result.productInfo.color,
+        size: result.productInfo.size,
       })
     } else {
       alert('정보를 불러오는 데 실패했습니다.')
@@ -31,7 +31,7 @@ const SellerItems = () => {
   }
 
   useEffect(() => {
-    getItems
+    getItems()
   }, [])
 
   const handleCheck = () => {

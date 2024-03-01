@@ -11,6 +11,11 @@ class SellerService {
     return result
   }
 
+  async updateSellerId(sellerId, transactionId) {
+    const result = await TransactionRepo.updateSellerId(sellerId, transactionId)
+    return result
+  }
+
   async getItemInfo(userId) {
     const result = await TransactionRepo.getItemInfo(userId)
     return result

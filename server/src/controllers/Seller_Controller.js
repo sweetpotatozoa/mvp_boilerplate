@@ -17,6 +17,14 @@ class SellerController {
       return { status: 500, message: err.message }
     }
   }
+  async updateSellerId(sellerId, transactionId) {
+    try {
+      const result = await SellerService.updateSellerId(sellerId, transactionId)
+      return { status: 200, transactionId: result.insertedId }
+    } catch (err) {
+      return { status: 500, message: err.message }
+    }
+  }
 
   async getItemInfo(userId) {
     try {

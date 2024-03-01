@@ -85,6 +85,16 @@ class BackendApis {
     const result = await fetcher('/seller/items', this.token, method, params)
     return result
   }
+
+  async updateSellerId(method = 'PUT', params = {}) {
+    const result = await fetcher(
+      '/seller/updateSellerId',
+      this.token,
+      method,
+      params,
+    )
+    return result
+  }
 }
 
 export default new BackendApis()

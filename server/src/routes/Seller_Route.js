@@ -9,8 +9,12 @@ router.get('/codecheck', auth, async (req, res) => {
   return res.status(result.status).send(result)
 })
 
+router.put('/updateSellerId', auth, async (req, res) => {
+  const result = await SellerController.updateSellerId(req.user.id, req.body.id)
+  return res.status(result.status).send(result)
+})
 router.get('/items', auth, async (req, res) => {
-  const result = await SellerController.getItemInfo(req.query.userId)
+  const result = await SellerController.getItemInfo(req.user.id)
   return res.status(result.status).send(result)
 })
 

@@ -9,16 +9,9 @@ router.get('/codecheck', auth, async (req, res) => {
   return res.status(result.status).send(result)
 })
 
-// router.put('/updateinfo', auth, async (req, res) => {
-
-//   const result = await SellerController.updateSellerInfo(
-//     transactionId._id,
-//     req.body.recipientName,
-//     req.body.recipientPhoneNumber,
-//     req.body.recipientAddress,
-//     req.body.depositorName,
-//   )
-//   return res.status(result.status).send(result)
-// })
+router.get('/items', auth, async (req, res) => {
+  const result = await SellerController.getItemInfo(req.query.userId)
+  return res.status(result.status).send(result)
+})
 
 module.exports = router

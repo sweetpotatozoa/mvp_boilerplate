@@ -80,6 +80,11 @@ class BackendApis {
     )
     return result
   }
+
+  async getItemInfo(method = 'GET', params = {}) {
+    const result = await fetcher('/seller/items', this.token, method, params)
+    return result
+  }
 }
 
 export default new BackendApis()

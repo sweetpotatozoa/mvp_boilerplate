@@ -45,7 +45,6 @@ class BuyerController {
     } else {
       try {
         const result = await BuyerService.RequestUniqueCode(buyerId)
-        console.log('컨트롤러에서 받은 result', result)
         if (result === null) {
           return { status: 404, message: 'Transaction not found' }
         } else {

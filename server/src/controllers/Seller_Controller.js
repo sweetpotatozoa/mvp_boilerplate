@@ -39,6 +39,29 @@ class SellerController {
       return { status: 500, message: err.message }
     }
   }
+
+  async updateSellerInfo(
+    sellerId,
+    sellerName,
+    sellerPhoneNumber,
+    returnAddress,
+    accountNumber,
+    accountHolderName,
+  ) {
+    try {
+      const result = await SellerService.updateSellerInfo(
+        sellerId,
+        sellerName,
+        sellerPhoneNumber,
+        returnAddress,
+        accountNumber,
+        accountHolderName,
+      )
+      return { status: 201, transactionId: result.insertedId }
+    } catch (err) {
+      return { status: 500, message: err.message }
+    }
+  }
 }
 
 module.exports = new SellerController()

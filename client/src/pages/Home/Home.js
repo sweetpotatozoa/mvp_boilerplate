@@ -12,6 +12,7 @@ const Home = () => {
 
   const transactionSatusHandler = async () => {
     const result = await BackendApis.traceTransaction()
+    console.log(result.transactionStatus)
     if (result?.status === 200) {
       setTransactionStatus(result.transactionStatus)
     }

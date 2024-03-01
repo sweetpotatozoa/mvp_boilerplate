@@ -37,6 +37,13 @@ const SellerItems = () => {
   const handleCheck = () => {
     setIsChecked(!isChecked)
   }
+
+  const handleNavigate = () => {
+    if (isChecked) {
+      navigate('/seller/info')
+    }
+  }
+
   return (
     <div>
       <Logo />
@@ -56,16 +63,10 @@ const SellerItems = () => {
           onChange={handleCheck}
         />
         <label className={styles.lableMid} htmlFor='myCheckBox'>
-          {' '}
           거래하고자 하는 제품이 맞습니다.
         </label>
       </div>
-      <OnOffNextButton
-        onClick={() => {
-          navigate('/seller/info')
-        }}
-        isChecked={isChecked}
-      />
+      <OnOffNextButton onClick={handleNavigate} isChecked={isChecked} />
     </div>
   )
 }

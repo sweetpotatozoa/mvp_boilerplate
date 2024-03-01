@@ -44,9 +44,10 @@ class TransactionRepo {
   }
 
   async getItems(uniqueCode) {
-    const result = await this.collection.findOne({
-      uniqueCode: uniqueCode,
-    })
+    const result = await this.collection.findOne(
+      { uniqueCode: uniqueCode },
+      { projection: { _id: 1 } }, // _id 필드만 가져오도록 projection 설정
+    )
 
     return result
   }
@@ -77,6 +78,18 @@ class TransactionRepo {
     // }
 
     // 업데이트 결과 반환
+    return result
+  }
+  async updateSellerId(sellerId, transactionId) {
+    const result = await this.collection.updateOne(
+      { _id: new mongoose.Types.ObjectId(transactionId) },
+      {
+        $set: {
+          'sellerInfo.sellerId': new mongoose.Types.ObjectId(sellerId),
+        },
+      },
+    )
+
     return result
   }
 }

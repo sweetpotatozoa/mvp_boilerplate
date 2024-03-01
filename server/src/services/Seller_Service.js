@@ -10,6 +10,11 @@ class SellerService {
     const result = await TransactionRepo.getItems(uniqueCode)
     return result
   }
+
+  async updateSellerId(sellerId, transactionId) {
+    const result = await TransactionRepo.updateSellerId(sellerId, transactionId)
+    return result
+  }
 }
 
 module.exports = new SellerService()

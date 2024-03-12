@@ -23,13 +23,42 @@ const fetcher = async (url, token, method, params = {}) => {
 
 class BackendApis {
   constructor() {
-    this.token = null
+    this.token = localStorage.getItem('token')
+  }
+
+  async register(method = 'POST', params = {}) {
+    const result = await fetcher('/auth/register', '', method, params)
+    return result
   }
 
   async login(method = 'POST', params = {}) {
-    const result = await fetcher('/login', '', method, params)
-    if (result?.status === 200) this.token = result.token
+    const result = await fetcher('/auth/login', '', method, params)
+    if (result?.status === 200) {
+      this.token = result.token
+      // 로그인 성공 시 토큰을 localStorage에 저장
+      localStorage.setItem('token', result.token)
+    }
     return result
+  }
+
+  async uploadFile(file) {
+    const formData = new FormData()
+    formData.append('file', file)
+
+    try {
+      const response = await fetch(`${API_URI}/upload/file`, {
+        method: 'POST',
+        body: formData,
+      })
+
+      console.log(response) // response 객체 출력
+      const result = await response.json()
+      console.log(result) // 결과 출력
+      return result
+    } catch (error) {
+      console.error('파일 업로드 중 오류 발생', error)
+      return null
+    }
   }
 }
 

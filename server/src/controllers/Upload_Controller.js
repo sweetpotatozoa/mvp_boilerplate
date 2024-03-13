@@ -21,12 +21,12 @@ exports.uploadFile = (req, res) => {
       return res.status(400).json({ error: error.message })
     }
     try {
-      // Upload_Service 호출 및 Whisper API 처리
       const result = await FileService.processAndTranscribeFile(req.file.path)
       if (result.success) {
         return res.status(200).json({
           message: '파일이 성공적으로 처리되었습니다.',
-          downloadLink: result.downloadLink,
+          status: 200,
+          text: result.text, // 변환된 텍스트를 응답에 포함
         })
       } else {
         return res.status(500).json({ error: result.error })

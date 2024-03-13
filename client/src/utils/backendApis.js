@@ -51,9 +51,7 @@ class BackendApis {
         body: formData,
       })
 
-      console.log(response) // response 객체 출력
       const result = await response.json()
-      console.log(result) // 결과 출력
       return result
     } catch (error) {
       console.error('파일 업로드 중 오류 발생', error)

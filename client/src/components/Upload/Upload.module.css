@@ -1,0 +1,115 @@
+.uploadContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin: 20px auto; /* 상단과 하단의 여백 추가 */
+  width: 90%; /* 모바일 기기에 맞게 너비 조정 */
+  max-width: 500px; /* PC 또는 큰 화면에서는 최대 너비 제한 */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.supportedFormats {
+  margin-bottom: 20px;
+  color: #555;
+  font-size: 0.9em;
+}
+
+.fileInputContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.fileInput {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 6px 12px;
+  margin-right: 10px;
+  cursor: pointer;
+  flex-grow: 1; /* 파일 입력을 컨테이너에 꽉 차게 조정 */
+}
+
+.uploadButton,
+.copyButton {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.uploadButton {
+  background-color: #5cb85c;
+  color: white;
+}
+
+.uploadButton:hover {
+  background-color: #4cae4c;
+}
+
+.copyButton {
+  background-color: #337ab7;
+  color: white;
+}
+
+.copyButton:hover {
+  background-color: #286090;
+}
+
+.textArea {
+  width: 100%;
+  height: 100px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  resize: vertical;
+}
+
+/* 중간 크기의 화면을 위한 미디어 쿼리 (태블릿이나 작은 노트북) */
+@media (min-width: 768px) {
+  .uploadContainer {
+    width: 70%; /* 화면이 중간 크기일 때 적당한 너비로 조정 */
+  }
+}
+
+/* 큰 화면을 위한 미디어 쿼리 (데스크탑) */
+@media (min-width: 992px) {
+  .uploadContainer {
+    width: 50%; /* 화면이 크면 더 넓은 너비로 조정 */
+  }
+}
+
+.loadingAnimation {
+  border: 4px solid #f3f3f3; /* Light grey */
+  border-top: 4px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.statusMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px; /* 상태 메시지의 높이 */
+  margin-top: 20px; /* 버튼과의 여백 */
+  font-size: 1em;
+  color: #555;
+}

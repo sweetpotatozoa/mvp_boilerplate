@@ -1,9 +1,9 @@
 const express = require('express')
 const app = express()
+const path = require('path')
 const compression = require('compression')
 const nunjucks = require('nunjucks')
 const cors = require('cors')
-const path = require('path')
 const fs = require('fs')
 
 const configs = require('./src/utils/configs')
@@ -37,9 +37,7 @@ app.use(
   }),
 )
 app.use(express.static(path.join(__dirname, 'public')))
-
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
-
 app.use('/', indexRouter)
 app.use('/example', exampleRouter)
 app.use('/upload', uploadRouter)

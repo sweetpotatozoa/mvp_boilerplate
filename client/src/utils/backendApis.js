@@ -46,7 +46,8 @@ class BackendApis {
     formData.append('file', file)
 
     try {
-      const response = await fetch(`/upload/file`, {
+      const fullUrl = API_URI + `/upload/file`
+      const response = await fetch(fullUrl, {
         method: 'POST',
         body: formData,
       })

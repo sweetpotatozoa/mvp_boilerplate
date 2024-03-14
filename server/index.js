@@ -28,6 +28,7 @@ app.use(
     parameterLimit: 50000,
   }),
 )
+
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
